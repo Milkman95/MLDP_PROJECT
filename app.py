@@ -2,6 +2,23 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+import requests
+import os
+
+def load_model():
+    file_id = "1m5vhKZ6lbzsdSfsgZPRmr9QP5HYKvbfJ"
+    url = f"https://drive.google.com/uc?id={file_id}"
+    output = "car_price_model.joblib"
+
+    if not os.path.exists(output):
+        with st.spinner("Downloading model from Google Drive..."):
+            response = requests.get(url)
+            with open(output, "wb") as f:
+                f.write(response.content)
+
+    return joblib.load(output)
+
+model = load_model()
 
 # Load model and columns
 model = joblib.load("car_price_model.joblib")
