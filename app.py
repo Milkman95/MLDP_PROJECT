@@ -21,7 +21,6 @@ def load_model():
 model = load_model()
 
 # Load model and columns
-model = joblib.load("car_price_model.joblib")
 model_columns = joblib.load("car_price_model_columns.joblib")
 
 # --- Page Config ---
